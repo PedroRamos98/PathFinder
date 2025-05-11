@@ -1,1 +1,146 @@
 
+PathFinder - Resolvendo o Labirinto 2D com o Algoritmo A*
+Descrição do Projeto
+O PathFinder é um projeto desenvolvido para encontrar o menor caminho em um labirinto 2D, utilizando o algoritmo A*. O objetivo é guiar um robô de resgate do ponto inicial (S) ao ponto final (E), evitando obstáculos (1) e movendo-se apenas por células livres (0). O algoritmo A* combina o custo do caminho percorrido (g) com uma estimativa heurística da distância até o destino (h), usando a distância de Manhattan, para determinar o caminho mais eficiente.
+Introdução ao Problema
+O problema consiste em navegar por um labirinto representado como uma matriz 2D, onde:
+
+0: Célula livre (pode ser atravessada).
+1: Obstáculo (não pode ser atravessado).
+S: Ponto inicial (start).
+E: Ponto final (end).
+
+O robô pode se mover nas direções cima, baixo, esquerda e direita, com um custo de movimento igual a 1 por célula. O algoritmo A* é ideal para este problema, pois garante o menor caminho (em termos de custo total) ao explorar eficientemente as possíveis rotas com base na soma de:
+
+g(n): Custo do caminho desde o início até o nó atual.
+h(n): Estimativa do custo restante até o destino (distância de Manhattan).
+f(n) = g(n) + h(n): Custo total estimado.
+
+Requisitos
+
+Python 3.6+
+Nenhuma biblioteca externa é necessária (usa apenas bibliotecas padrão: heapq e typing).
+
+Configuração e Execução
+
+Clone o repositório:
+git clone https://github.com/exemploaluno/pathfinder_a_star.git
+cd pathfinder_a_star
+
+
+Execute o programa:
+python pathfinder.py
+
+
+Modifique o labirinto (opcional):
+
+Edite a variável maze na função main() do arquivo pathfinder.py para testar diferentes labirintos.
+Certifique-se de que o labirinto contém exatamente um S e um E, e que as dimensões são consistentes.
+
+
+
+Funcionamento do Algoritmo A*
+O algoritmo A* opera da seguinte forma:
+
+Inicialização:
+
+Localiza as posições de S e E na matriz do labirinto.
+Cria uma fila de prioridade (open_list) com o nó inicial (S), inicializando seu custo g = 0 e calculando f = g + h.
+
+
+Heurística:
+
+Usa a distância de Manhattan: h(n) = |x_atual - x_final| + |y_atual - y_final|.
+Essa heurística é admissível (nunca superestima o custo real) e consistente, garantindo a optimalidade do caminho.
+
+
+Exploração:
+
+Remove o nó com menor f(n) da fila de prioridade.
+Verifica seus vizinhos (cima, baixo, esquerda, direita).
+Para cada vizinho válido:
+Calcula o novo custo g (adicionando 1 ao custo do nó atual).
+Calcula h (distância de Manhattan até E).
+Se o novo g for menor que o anterior (ou o vizinho for novo), atualiza o caminho e adiciona à fila.
+
+
+
+
+Término:
+
+Se o nó atual for E, retorna o caminho encontrado.
+Se a fila esvaziar sem encontrar E, retorna "Sem solução".
+
+
+Saída:
+
+Exibe o caminho como uma lista de coordenadas (ex.: [s(0, 0), (1, 0), ..., e(3, 3)]).
+Mostra o labirinto com o caminho destacado usando *.
+
+
+
+Exemplo de Entrada e Saída
+Entrada
+Labirinto (definido em pathfinder.py):
+S 0 1 0 0
+0 0 1 0 1
+1 0 1 0 0
+1 0 0 E 1
+
+Saída
+Labirinto inicial:
+S 0 1 0 0
+0 0 1 0 1
+1 0 1 0 0
+1 0 0 E 1
+
+Menor caminho (em coordenadas):
+[s(0, 0), (1, 0), (1, 1), (2, 1), (3, 1), (3, 2), e(3, 3)]
+
+Labirinto com o caminho destacado:
+S 0 1 0 0
+* * 1 0 1
+1 * 1 0 0
+1 * * E 1
+
+Caso Sem Solução
+Se o labirinto for modificado para não ter caminho (ex.: bloqueando todas as rotas para E), a saída será:
+No solution: No path exists from S to E.
+
+Estrutura do Código
+
+Funções principais:
+
+manhattan_distance(p1, p2): Calcula a distância de Manhattan.
+find_start_end(maze): Localiza S e E.
+is_valid_move(maze, pos): Verifica se uma posição é válida.
+get_neighbors(pos, maze): Retorna vizinhos válidos.
+a_star(maze): Implementa o algoritmo A*.
+display_maze_with_path(maze, path): Exibe o labirinto com o caminho.
+main(): Função principal para executar o programa.
+
+
+Boas práticas:
+
+Código comentado e organizado.
+Tipagem explícita com typing.
+Tratamento de erros para labirintos inválidos.
+Modularidade para facilitar manutenção.
+
+
+
+Contribuições
+Este projeto foi desenvolvido por [Nomes dos Integrantes]. Todos os membros contribuíram com:
+
+Implementação do algoritmo.
+Testes com diferentes labirintos.
+Redação do README.md.
+Commits no repositório GitHub.
+
+Como Contribuir
+
+Faça um fork do repositório.
+Crie uma branch para suas alterações (git checkout -b feature/nova-funcionalidade).
+Commit suas mudanças (git commit -m 'Adiciona nova funcionalidade').
+Push para a branch (git push origin feature/nova-funcionalidade).
+Abra um Pull Request.
