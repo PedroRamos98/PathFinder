@@ -158,7 +158,7 @@ No solution: No path exists from S to E.
 
 ## Contribuições
 
-Este projeto foi desenvolvido por **Pedro Moreira Ramos**. Contribuições incluem:
+Este projeto foi desenvolvido por **Pedro Moreira Ramos**, **Davi Aguilar Nunes Oliveira** e **Rafael Parreira Chequer**. Contribuições incluem:
 - Implementação do algoritmo A*.
 - Adição de geração de labirintos aleatórios.
 - Visualização do caminho em vermelho no terminal.
